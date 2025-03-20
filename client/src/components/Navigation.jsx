@@ -12,6 +12,7 @@ function Navigation() {
           <Nav.Link as={Link} to="/" style={{ marginRight: '20px', marginLeft: '10px' }}>Home</Nav.Link>
           <Nav.Link as={Link} to="/about" style={{ marginRight: '20px' }}>About</Nav.Link>
           <Nav.Link as={Link} to="/login" style={{ marginRight: '20px' }}>Login</Nav.Link>
+          <Nav.Link as={Link} to="/levels" style={{ marginRight: '20px' }}>Levels</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

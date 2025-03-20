@@ -1,0 +1,47 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    column-gap: 20px; /* Increased horizontal gap */
+    row-gap: 20px; /* Increased vertical gap */
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .grid-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px; /* Increased width */
+    height: 120px; /* Increased height */
+    background-color: #007bff;
+    color: white;
+    font-size: 48px; /* Further increased font size */
+    font-family: 'Quicksand', sans-serif; /* Use Quicksand font */
+    font-weight: 600; /* Use a bolder weight for better visibility */
+    border-radius: 10px;
+    border: none; /* Remove default button border */
+  }
+  
+  .grid-item button {
+    width: 100%;
+    height: 100%;
+    font-size: inherit; /* Inherit font size from parent */
+    font-family: inherit; /* Inherit font family from parent */
+    font-weight: inherit; /* Inherit font weight from parent */
+    background: none; /* Remove default button background */
+    border: none; /* Remove default button border */
+    color: inherit; /* Inherit color from parent */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .grid-item:nth-child(25) {
+    grid-column: 1 / 2;
+  }
+  
+  .grid-item:nth-child(26) {
+    grid-column: 2 / 3;
+  }
