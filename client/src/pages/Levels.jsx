@@ -1,16 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import axios from 'axios';
+import axios from 'axios'; // To make HTTP requests
 import './Levels.css'; // Import custom CSS for styling
 
 function Levels() {
+  const [targetSign, setTargetSign] = useState('A'); // Default target sign is 'A'
+
+  // Function to handle the button click
   const handleButtonClick = (letter) => {
     console.log(`Button ${letter} clicked`);
-    // You can add more logic here if needed
+    axios.post('http://127.0.0.1:5000/set-target-sign', {
+      target_sign: letter
+    })
+    .then(response => {
+      console.log('Target sign updated:', response.data);
+    })
+    .catch(error => {
+      console.error('Error updating target sign:', error);
+    });
   };
+  
 
   const letters = [
     'A', 'B', 'C', 'D', 'E', 'F',
