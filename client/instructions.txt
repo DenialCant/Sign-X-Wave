@@ -1,0 +1,13 @@
+Sign-X-Wave
+To run everything, follow these steps: 
+
+Backend setup:
+cd server
+npm install
+pip install -r requirements.txt
+node server.js 
+
+Frontend setup:
+cd ../client
+npm install
+npm start
