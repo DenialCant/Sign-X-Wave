@@ -7,9 +7,13 @@ import axios from 'axios';
 import './Levels.css'; // Import custom CSS for styling
 
 function Levels() {
-  const handleButtonClick = (letter) => {
-    console.log(`Button ${letter} clicked`);
-    // You can add more logic here if needed
+  const handleButtonClick = async (action) => {
+    try {
+      const response = await axios.post('http://localhost:3001/run-detector', { action });
+      console.log(`Response from server: ${response.data}`);
+    } catch (error) {
+      console.error('Error communicating with the server:', error.response?.data || error.message);
+    }
   };
 
   const letters = [
