@@ -1,47 +1,85 @@
+body {
+  background: linear-gradient(135deg, #000 40%, #222 100%);
+  color: white; /* Ensures text is visible */
+  font-family: 'Quicksand', sans-serif;
+}
+
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    column-gap: 20px; /* Increased horizontal gap */
-    row-gap: 20px; /* Increased vertical gap */
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-  }
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 50px;
+  width: 50%;
   
-  .grid-item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 120px; /* Increased width */
-    height: 120px; /* Increased height */
-    background-color: #007bff;
-    color: white;
-    font-size: 48px; /* Further increased font size */
-    font-family: 'Quicksand', sans-serif; /* Use Quicksand font */
-    font-weight: 600; /* Use a bolder weight for better visibility */
-    border-radius: 10px;
-    border: none; /* Remove default button border */
-  }
-  
-  .grid-item button {
-    width: 100%;
-    height: 100%;
-    font-size: inherit; /* Inherit font size from parent */
-    font-family: inherit; /* Inherit font family from parent */
-    font-weight: inherit; /* Inherit font weight from parent */
-    background: none; /* Remove default button background */
-    border: none; /* Remove default button border */
-    color: inherit; /* Inherit color from parent */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .grid-item:nth-child(25) {
-    grid-column: 1 / 2;
-  }
-  
-  .grid-item:nth-child(26) {
-    grid-column: 2 / 3;
-  }
+  /* Proper centering */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  /* Use margin auto for centering */
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+
+.grid-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 75px;
+  background: transparent; /* Removes the blue background */
+  color: white; /* Adjusts text color */
+  font-size: 48px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 2px solid white; /* Adds a white frame */
+}
+.grid-item button {
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: none;
+  color: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detector-button {
+  width: 20%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: #333;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.logout-button {
+  width: 20%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: #333;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.logout-button {
+  position: absolute;
+  top: 100px; /* Moves it to the top */
+  right: 20px; /* Keeps it on the right */
+  padding: 10px 20px;
+  background: #333; 
+  color: white;
+  border-radius: 5px;
+}
+

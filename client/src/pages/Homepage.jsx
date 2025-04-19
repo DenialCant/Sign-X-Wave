@@ -1,18 +1,21 @@
-import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "./loginpage.css"; 
 
-function Homepage() {
+const Home = () => {
+  const navigate = useNavigate();
+
   return (
-    <Container fluid className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
-      <Row>
-        <Col>
-          <h1>This is the homepage</h1>
-        </Col>
-      </Row>
-    </Container>
+    <div className="login-page">
+      <div className>
+        <h2>Welcome</h2>
+        <div className="button-row">
+          <button onClick={() => navigate("/login")}>Login</button>
+          <button onClick={() => navigate("/signup")}>Signup</button>
+        </div>
+      </div>
+    </div>
   );
-}
+};
 
-export default Homepage;
+export default Home;

@@ -1,15 +1,14 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import './App.css';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
+import PrivateRoute from "./pages/PrivateRoute";
 
-// import pages
-import Homepage from './pages/Homepage';
-import About from './pages/About';
-import Login from './pages/Login';
-import Levels from './pages/Levels';
-
-// import components
-import Navigation from './components/Navigation';
+import Homepage from "./pages/Homepage";
+import About from "./pages/About";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Levels from "./pages/Levels";
+import Navigation from "./components/Navigation";
 
 function App() {
   return (
@@ -19,7 +18,15 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/levels" element={<Levels />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route
+          path="/levels"
+          element={
+            <PrivateRoute>
+              <Levels />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </div>
   );

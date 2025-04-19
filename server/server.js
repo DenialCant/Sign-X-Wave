@@ -1,36 +1,69 @@
-const express = require('express');
-const spawn = require('cross-spawn');
-const path = require('path');
+const express = require("express");
+const mysql = require("mysql");
+const cors = require("cors");
 const app = express();
-const port = 3001;
 
-console.log('Starting server...');
+app.use(cors());
+app.use(express.json());
 
-app.get('/run-detector', (req, res) => {
-  console.log('Received request to run detector');
-  const detectorPath = path.join(__dirname, '../client/src/detector');
-  console.log(`Detector path: ${detectorPath}`);
-
-  // Start the Python script asynchronously
-  const runApp = spawn('python', ['app.py'], { cwd: detectorPath, shell: true });
-  runApp.stdout.on('data', (data) => {
-    console.log(`Run stdout: ${data}`);
-  });
-  runApp.stderr.on('data', (data) => {
-    console.error(`Run stderr: ${data}`);
-  });
-  runApp.on('close', (code) => {
-    if (code !== 0) {
-      console.error(`python app.py process exited with code ${code}`);
-    } else {
-      console.log('Detector started successfully');
-    }
-  });
-
-  // Respond to the client immediately
-  res.send('Detector is starting...');
+// MySQL connection
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "signup",
 });
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+db.connect((err) => {
+  if (err) {
+    console.error("❌ Database connection failed:", err);
+  } else {
+    console.log("✅ Connected to MySQL database");
+  }
+});
+
+// Signup Endpoint
+app.post("/signup", (req, res) => {
+  const { name, email, password } = req.body;
+
+  if (!name || !email || !password) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+
+  const sql = "INSERT INTO login (name, email, password) VALUES (?, ?, ?)";
+  db.query(sql, [name, email, password], (err, result) => {
+    if (err) {
+      console.error("❌ Signup error:", err);
+      return res.status(500).json({ error: "Database error" });
+    }
+    res.status(200).json({ message: "Signup successful!" });
+  });
+});
+
+// Login Endpoint
+app.post("/login", (req, res) => {
+  const { email, password } = req.body;
+
+  console.log("📥 Login attempt:", email, password);
+
+  const sql = "SELECT * FROM login WHERE email = ? AND password = ?";
+  db.query(sql, [email, password], (err, results) => {
+    if (err) {
+      console.error("❌ Login error:", err);
+      return res.status(500).json({ error: "Internal server error" });
+    }
+
+    if (results.length > 0) {
+      console.log("✅ Login successful for:", email);
+      res.json({ success: true, message: "Login successful!" });
+    } else {
+      console.log("❌ Invalid login for:", email);
+      res.json({ success: false, message: "Invalid credentials" });
+    }
+  });
+});
+
+
+app.listen(8081, () => {
+  console.log("🚀 Server running on http://localhost:8081");
 });
