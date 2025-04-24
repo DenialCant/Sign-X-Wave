@@ -1,0 +1,25 @@
+.registration-navbar {
+    position: absolute;
+    top: 30px; 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    z-index: 1000;
+    justify-content: flex-start;
+    padding-left: 60px;
+  
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .nav-link {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: #ddd;
+  }

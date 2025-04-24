@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./loginpage.css";
+import "./Signup.css";
+import RegistrationNavbar from "../components/RegistrationNavbar";
+
 
 const Signup = () => {
   const [values, setValues] = useState({
@@ -33,48 +35,32 @@ const Signup = () => {
   };
 
   return (
-    <div className="login-page">
-      <div className="login-container">
-        <h2>Signup</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="input-group">
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              onChange={handleInput}
-            />
-          </div>
-          <div className="input-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              onChange={handleInput}
-            />
-          </div>
-          <div className="input-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              required
-              onChange={handleInput}
-            />
-          </div>
-          <button type="submit">Signup</button>
-          {error && <p className="error-msg">{error}</p>}
-          <p className="register-link">
-            Already have an account? <Link to="/login">Login here</Link>
-          </p>
-        </form>
-      </div>
+    <div className="signup-background">
+        <RegistrationNavbar/>{}
+    <header className="signup-header">
+
+    </header>
+
+    <div className="signup-form-container">
+      <h1>Sign Up</h1>
+      <form className="signup-form" onSubmit={handleSubmit}>
+        <label>Name*</label>
+        <input type="text" name="name" required onChange={handleInput} />
+
+        <label>Email*</label>
+        <input type="email" name="email" required onChange={handleInput} />
+
+        <label>Password*</label>
+        <input type="password" name="password" required onChange={handleInput} />
+
+        <button type="submit">Create Account</button>
+        {error && <p className="error-msg">{error}</p>}
+        <p className="login-redirect">
+          Already have an account? <Link to="/login">Login here</Link>
+        </p>
+      </form>
     </div>
+  </div>
   );
 };
 

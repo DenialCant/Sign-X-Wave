@@ -1,0 +1,96 @@
+.home-page {
+    width: 100%;
+    height: 100vh;
+    opacity: 0.6;
+    background-image: url('../wave.svg'),
+        radial-gradient(
+            circle at center,
+            rgba(20, 40, 106, 1) 14%,
+            rgba(52, 76, 163, 1) 28%,
+            rgba(203, 190, 231, 1) 52%,
+            rgba(99, 132, 229, 1) 65%,
+            rgba(175, 201, 215, 1) 69%,
+            rgba(161, 204, 229, 1) 76%,
+            rgba(200, 246, 239, 1) 100%
+        );
+    background-size: 150% 150%;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #f4e9f5;
+    text-align: center;
+    mix-blend-mode: screen;
+
+  }
+
+
+
+  .title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .logo-text {
+    display: flex;
+    gap: 20px;
+    font-size: 104px;
+    text-align: center;
+    letter-spacing: 2px;
+  }
+  
+  .logo-text .left,
+  .logo-text .right {
+    font-family: 'Lisong Pro Light', sans-serif;
+    font-weight: 200;
+  }
+  
+  .logo-text .middle {
+    font-family: 'Kufam', sans-serif;
+    font-weight: 400;
+    transition: all 0.3s ease;
+  }
+  
+  
+  .logo-text span.left,
+  .logo-text span.right {
+    color: #e5d4ea;
+  }
+  
+  .logo-text span.middle {
+    font-weight: bold;
+    color: #ffffff;
+  }
+  
+  .button-row {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .home-button {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    padding: 10px 24px;
+    font-size: 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  .home-button:hover {
+    background-color: white;
+    color: #2e2f60;
+  }
+  
+  .home-button.active {
+    background-color: #947bba;
+    border: none;
+  }
+ .logo-text:hover .left,
+ .logo-text:hover .right {
+   opacity: 0.7;
+   transform: scale(0.95);
+   transition: all 0.4s ease;
+ }

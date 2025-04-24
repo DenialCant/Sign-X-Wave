@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./loginpage.css";
+import "./Login.css";
+import RegistrationNavbar from "../components/RegistrationNavbar";
 
 const Login = () => {
   const [values, setValues] = useState({
@@ -37,12 +38,37 @@ const Login = () => {
       setError("Login failed. Please try again.");
     }
   };
-
   return (
-    <div className="login-page">
-      <div className="login-container">
+    <div className="signup-background">
+        <RegistrationNavbar/>{}
+    <header className="signup-header">
+
+    </header>
+
+    <div className="signup-form-container">
+      <h1>Login</h1>
+      <form className="signup-form" onSubmit={handleSubmit}>
+        <label>Email*</label>
+        <input type="email" name="email" required onChange={handleInput} />
+
+        <label>Password*</label>
+        <input type="password" name="password" required onChange={handleInput} />
+
+        <button type="submit">Login</button>
+        {error && <p className="error-msg">{error}</p>}
+        <p className="login-redirect">
+          Don't have an account? <Link to="/signup">Signup here</Link>
+        </p>
+      </form>
+    </div>
+  </div>
+  );
+
+  /* return (
+    <div className="sign-background">
+      <div className="signup-form-container">
         <h2>Login</h2>
-        <form onSubmit={handleSubmit}>
+        <form className="signup-form" onSubmit={handleSubmit}>
           <div className="input-group">
             <label htmlFor="email">Email</label>
             <input
@@ -73,7 +99,7 @@ const Login = () => {
         </form>
       </div>
     </div>
-  );
+  ); */
 };
 
 export default Login;
