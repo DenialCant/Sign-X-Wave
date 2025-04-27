@@ -8,6 +8,8 @@ import About from './pages/About';
 import Login from './pages/Login';
 import Levels from './pages/Levels';
 import Signup from './pages/Signup';
+import SignPage from "./pages/SignPage";
+
 
 // import components
 //import Navigation from './components/Navigation';
@@ -15,13 +17,14 @@ import Signup from './pages/Signup';
 function App() {
   return (
     <div className="App">
-      
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/levels" element={<Levels />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/sign/:letter" element={<SignPage />} />
+
       </Routes>
     </div>
   );

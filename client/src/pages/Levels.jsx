@@ -1,33 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import axios from 'axios';
 import './Levels.css';
 
 function Levels() {
-  const [targetSign, setTargetSign] = useState('A');
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleButtonClick = (letter) => {
     console.log(`Button ${letter} clicked`);
-    axios.post('http://127.0.0.1:5000/set-target-sign', {
-      target_sign: letter
-    })
-    .then(response => {
-      console.log('Target sign updated:', response.data);
-    })
-    .catch(error => {
-      console.error('Error updating target sign:', error);
-    });
+    navigate(`/sign/${letter}`);
   };
 
-  //Handle Logout
   const handleLogout = () => {
     localStorage.removeItem("isAuthenticated");
-    navigate("/login"); 
+    navigate("/login");
   };
 
   const letters = [
@@ -43,14 +32,13 @@ function Levels() {
       
         <Row>
         <Button variant="danger" 
-        className ="logout-button"
+        className="logout-button"
         onClick={handleLogout}>Logout</Button>
         </Row>
       
       <Row>
         <Col className="text-center">
           <h1>Levels</h1>
-          <Button variant="primary" className = "detector-button" onClick={() => handleButtonClick('Run Detector')}>Run Detector</Button>
           <div className="grid-container">
             {letters.map((letter, index) => (
               <div key={index} className="grid-item">
@@ -65,3 +53,4 @@ function Levels() {
 }
 
 export default Levels;
+
