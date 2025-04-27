@@ -2,10 +2,15 @@ import React, { useEffect, useRef, useState } from "react";
 import { Hands } from "@mediapipe/hands";
 import { Camera } from "@mediapipe/camera_utils";
 import axios from "axios";
+import { useParams, useNavigate } from 'react-router-dom';
 
 const SignPage = () => {
   const webcamRef = useRef(null);
+  const navigate = useNavigate();
+  const { letter } = useParams();
+  const [expectedLetter, setExpectedLetter] = useState(letter || "A");
   const [prediction, setPrediction] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     const hands = new Hands({
@@ -25,11 +30,19 @@ const SignPage = () => {
       if (results.multiHandLandmarks && results.multiHandLandmarks.length > 0) {
         const landmarks = results.multiHandLandmarks[0]
           .flatMap((point) => [point.x, point.y]);
-        
+
         axios.post("http://localhost:5004/predict", { landmarks })
           .then((response) => {
-            setPrediction(response.data.letter);
-            console.log("Prediction:", response.data.letter);
+            const predictedLetter = response.data.letter;
+            setPrediction(predictedLetter);
+            console.log("Prediction:", predictedLetter);
+
+            if (predictedLetter === expectedLetter) {
+              setSuccessMessage("✅ Good job!");
+              setTimeout(() => {
+                navigate("/levels");
+              }, 2000); // Redirect back to Levels after 2 seconds
+            }
           })
           .catch((error) => {
             console.error("Prediction error:", error);
@@ -47,12 +60,18 @@ const SignPage = () => {
       });
       camera.start();
     }
-  }, []);
+  }, [expectedLetter]);
 
   return (
     <div className="sign-page">
-      <h1>Sign Detection</h1>
-      <h2>Predicted: {prediction}</h2>
+      <h1>Sign Detection Practice</h1>
+      <h2>Sign This Letter: {expectedLetter}</h2>
+      <h2>Your Prediction: {prediction}</h2>
+
+      {successMessage && (
+        <h2 style={{ color: "green", marginTop: "20px" }}>{successMessage}</h2>
+      )}
+
       <video
         ref={webcamRef}
         width="640"
@@ -67,3 +86,4 @@ const SignPage = () => {
 };
 
 export default SignPage;
+
