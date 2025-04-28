@@ -136,3 +136,10 @@ dmypy.json
 .idea/
 
 .DS_Store
+
+server/asl_alphabet_train/
+server/hand_landmarks_data.csv
+__pycache__/
+*.h5
+node_modules/
+.env

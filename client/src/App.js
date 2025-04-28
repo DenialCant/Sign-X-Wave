@@ -9,6 +9,8 @@ import Login from './pages/Login';
 import Levels from './pages/Levels';
 import Signup from './pages/Signup';
 import SignPage from "./pages/SignPage";
+import CollectPage from './pages/CollectPage';
+
 
 
 // import components
@@ -24,6 +26,8 @@ function App() {
         <Route path="/levels" element={<Levels />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/sign/:letter" element={<SignPage />} />
+        <Route path="/collect" element={<CollectPage />} />
+
 
       </Routes>
     </div>
