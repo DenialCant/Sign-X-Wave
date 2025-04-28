@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import Levels from './pages/Levels';
 import Signup from './pages/Signup';
 import SignPage from "./pages/SignPage";
+import Tutorial from './pages/Tutorial';
 
 
 // import components
@@ -24,7 +25,9 @@ function App() {
         <Route path="/levels" element={<Levels />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/sign/:letter" element={<SignPage />} />
+        <Route path="/tutorial/:letter" element={<Tutorial />} />
 
+        {/* Add more routes as needed */}
       </Routes>
     </div>
   );

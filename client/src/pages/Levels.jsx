@@ -11,7 +11,7 @@ function Levels() {
 
   const handleButtonClick = (letter) => {
     console.log(`Button ${letter} clicked`);
-    navigate(`/sign/${letter}`);
+    navigate(`/tutorial/${letter}`);
   };
 
   const handleLogout = () => {
