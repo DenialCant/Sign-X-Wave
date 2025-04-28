@@ -13,7 +13,7 @@ import numpy as np
 app = Flask(__name__)
 CORS(app)
 
-model = tf.keras.models.load_model('keypoint_classifier.h5')
+model = tf.keras.models.load_model('new_hand_model.h5')
 #model = tf.keras.models.load_model(
     #'keypoint_classifier.keras',
     #custom_objects={

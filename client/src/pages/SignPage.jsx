@@ -31,7 +31,7 @@ const SignPage = () => {
         const landmarks = results.multiHandLandmarks[0]
           .flatMap((point) => [point.x, point.y]);
 
-        axios.post("http://localhost:5004/predict", { landmarks })
+        axios.post("http://localhost:5006/predict", { landmarks })
           .then((response) => {
             const predictedLetter = response.data.letter;
             setPrediction(predictedLetter);
