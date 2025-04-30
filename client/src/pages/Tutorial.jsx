@@ -1,6 +1,5 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-//import "./Tutorial.css";
 
 const Tutorial = () => {
   const { letter } = useParams(); // Get the letter from the route parameter

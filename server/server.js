@@ -16,7 +16,7 @@ const db = mysql.createConnection({
 
 db.connect((err) => {
   if (err) {
-    console.error("❌ Database connection failed:", err);
+    console.error("Database connection failed:", err);
   } else {
     console.log("✅ Connected to MySQL database");
   }
@@ -33,7 +33,7 @@ app.post("/signup", (req, res) => {
   const sql = "INSERT INTO login (name, email, password) VALUES (?, ?, ?)";
   db.query(sql, [name, email, password], (err, result) => {
     if (err) {
-      console.error("❌ Signup error:", err);
+      console.error("Signup error:", err);
       return res.status(500).json({ error: "Database error" });
     }
     res.status(200).json({ message: "Signup successful!" });
@@ -49,7 +49,7 @@ app.post("/login", (req, res) => {
   const sql = "SELECT * FROM login WHERE email = ? AND password = ?";
   db.query(sql, [email, password], (err, results) => {
     if (err) {
-      console.error("❌ Login error:", err);
+      console.error("Login error:", err);
       return res.status(500).json({ error: "Internal server error" });
     }
 
@@ -57,7 +57,7 @@ app.post("/login", (req, res) => {
       console.log("✅ Login successful for:", email);
       res.json({ success: true, message: "Login successful!" });
     } else {
-      console.log("❌ Invalid login for:", email);
+      console.log("Invalid login for:", email);
       res.json({ success: false, message: "Invalid credentials" });
     }
   });

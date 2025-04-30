@@ -63,43 +63,6 @@ const Login = () => {
     </div>
   </div>
   );
-
-  /* return (
-    <div className="sign-background">
-      <div className="signup-form-container">
-        <h2>Login</h2>
-        <form className="signup-form" onSubmit={handleSubmit}>
-          <div className="input-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              onChange={handleInput}
-              value={values.email}
-            />
-          </div>
-          <div className="input-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              required
-              onChange={handleInput}
-              value={values.password}
-            />
-          </div>
-          <button type="submit">Login</button>
-          {error && <p className="error-msg">{error}</p>}
-          <p className="register-link">
-            Don’t have an account? <Link to="/signup">Signup here</Link>
-          </p>
-        </form>
-      </div>
-    </div>
-  ); */
 };
 
 export default Login;

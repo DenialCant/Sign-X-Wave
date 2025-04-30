@@ -10,7 +10,7 @@ const Home = () => {
     <div className="title-container">
       <h1 className="logo-text">
         <span className="left">SiGN</span>
-        <span className="middle">X</span>
+        <span className="middle">X</span> 
         <span className="right">WAVE</span>
       </h1>
 

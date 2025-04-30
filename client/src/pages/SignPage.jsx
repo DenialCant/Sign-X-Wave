@@ -15,7 +15,7 @@ const SignPage = () => {
   useEffect(() => {
     setExpectedLetter(letter); // Update the expected letter when the route changes
     setPrediction(""); // Reset the prediction for the new letter
-    setSuccessMessage(""); // Clear the success message
+    setSuccessMessage(""); 
   }, [letter]);
 
   useEffect(() => {
