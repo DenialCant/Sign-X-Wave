@@ -9,12 +9,11 @@ import Login from './pages/Login';
 import Levels from './pages/Levels';
 import Signup from './pages/Signup';
 import SignPage from "./pages/SignPage";
-<<<<<<< HEAD
+//<<<<<<< HEAD
 import CollectPage from './pages/CollectPage';
 
-=======
-import Tutorial from './pages/Tutorial';
->>>>>>> 4cb04012b29b1200a11ee0afd11f0213697d9f98
+
+import Tutorial from './pages/Tutorial'; //>>>>>>> 4cb04012b29b1200a11ee0afd11f0213697d9f98
 
 
 // import components
