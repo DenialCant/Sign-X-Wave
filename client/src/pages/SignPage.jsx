@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Hands } from "@mediapipe/hands";
 import { Camera } from "@mediapipe/camera_utils";
 import axios from "axios";
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from "react-router-dom";
 
 const SignPage = () => {
   const webcamRef = useRef(null);
@@ -13,54 +13,86 @@ const SignPage = () => {
   const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
-    const hands = new Hands({
-      locateFile: (file) => {
-        return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
-      },
-    });
+    setExpectedLetter(letter); // Update the expected letter when the route changes
+    setPrediction(""); // Reset the prediction for the new letter
+    setSuccessMessage(""); // Clear the success message
+  }, [letter]);
 
-    hands.setOptions({
-      maxNumHands: 1,
-      modelComplexity: 1,
-      minDetectionConfidence: 0.7,
-      minTrackingConfidence: 0.5,
-    });
+  useEffect(() => {
+    let hands = null; // Declare hands instance
+    let camera = null; // Declare camera instance
+    let isComponentMounted = true; // Track if the component is still mounted
 
-    hands.onResults((results) => {
-      if (results.multiHandLandmarks && results.multiHandLandmarks.length > 0) {
-        const landmarks = results.multiHandLandmarks[0]
-          .flatMap((point) => [point.x, point.y]);
-
-        axios.post("http://localhost:5006/predict", { landmarks })
-          .then((response) => {
-            const predictedLetter = response.data.letter;
-            setPrediction(predictedLetter);
-            console.log("Prediction:", predictedLetter);
-
-            if (predictedLetter === expectedLetter) {
-              setSuccessMessage("✅ Good job!");
-              setTimeout(() => {
-                navigate("/levels");
-              }, 2000); // Redirect back to Levels after 2 seconds
-            }
-          })
-          .catch((error) => {
-            console.error("Prediction error:", error);
-          });
-      }
-    });
-
-    if (webcamRef.current) {
-      const camera = new Camera(webcamRef.current, {
-        onFrame: async () => {
-          await hands.send({ image: webcamRef.current });
-        },
-        width: 640,
-        height: 480,
+    const initializeHands = async () => {
+      hands = new Hands({
+        locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`,
       });
-      camera.start();
-    }
-  }, [expectedLetter]);
+
+      hands.setOptions({
+        maxNumHands: 1,
+        modelComplexity: 1,
+        minDetectionConfidence: 0.7,
+        minTrackingConfidence: 0.5,
+      });
+
+      hands.onResults((results) => {
+        if (!isComponentMounted) return; // Prevent processing if the component is unmounted
+
+        if (results.multiHandLandmarks && results.multiHandLandmarks.length > 0) {
+          const landmarks = results.multiHandLandmarks[0].flatMap((point) => [
+            point.x,
+            point.y,
+          ]);
+
+          axios
+            .post("http://localhost:5006/predict", { landmarks })
+            .then((response) => {
+              const predictedLetter = response.data.letter;
+              setPrediction(predictedLetter);
+              console.log("Prediction:", predictedLetter);
+
+              if (predictedLetter === expectedLetter) {
+                setSuccessMessage("✅ Good job!");
+                setTimeout(() => {
+                  navigate("/levels");
+                }, 2000); // Redirect back to Levels after 2 seconds
+              }
+            })
+            .catch((error) => {
+              console.error("Prediction error:", error);
+            });
+        }
+      });
+
+      if (webcamRef.current) {
+        camera = new Camera(webcamRef.current, {
+          onFrame: async () => {
+            if (isComponentMounted && webcamRef.current) {
+              await hands.send({ image: webcamRef.current });
+            }
+          },
+          width: 640,
+          height: 480,
+        });
+        camera.start();
+      }
+    };
+
+    initializeHands();
+
+    // Cleanup function to stop camera and hands instances
+    return () => {
+      isComponentMounted = false; // Mark the component as unmounted
+      if (camera) {
+        camera.stop(); // Stop the camera
+        camera = null; // Ensure the camera instance is cleared
+      }
+      if (hands) {
+        hands.close(); // Close the hands instance
+        hands = null; // Ensure the hands instance is cleared
+      }
+    };
+  }, [expectedLetter, navigate]);
 
   return (
     <div className="sign-page">
@@ -86,4 +118,3 @@ const SignPage = () => {
 };
 
 export default SignPage;
-
