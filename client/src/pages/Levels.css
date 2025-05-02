@@ -58,3 +58,26 @@ body {
   font-size: 16px;
   cursor: pointer;
 }
+
+.grid-tutorial {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.grid-tutorial button {
+  width: 100px;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid white;
+  border-radius: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+}

@@ -1,10 +1,24 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import "./Levels.css"; 
 //import "./Tutorial.css"; // Ensure you have a CSS file for styling
 
 const Tutorial = () => {
   const { letter } = useParams(); // Get the letter from the route parameter
   const navigate = useNavigate(); // Hook to navigate between pages
+
+  // go back to levels page 
+  const backtoLevel = () => {
+    navigate("/levels");
+  };
+  
+  // go to next letter 
+  const nextLetter = () => {
+    if (letter === 'Z') return;
+    const next = String.fromCharCode(letter.charCodeAt(0) + 1);
+    navigate(`/tutorial/${next}`);
+  };
+
 
   const handleStartSigning = () => {
     navigate(`/sign/${letter}`); // Navigate to the signing page for the selected letter
@@ -31,11 +45,13 @@ const Tutorial = () => {
         <li>Step 3: Use the camera to verify your sign.</li>
       </ul>
 
-      {/* Button to navigate to the signing page */}
-      <button onClick={handleStartSigning} className="start-signing-button">
-        Start Signing Letter "{letter}"
-      </button>
-    </div>
+      {/* Button container to layout buttons side by side */}
+    <div className="grid-tutorial">
+      <button onClick={handleStartSigning}>Start"{letter}"</button>
+      <button onClick={nextLetter} >Next</button>
+      <button onClick={backtoLevel}>Exit</button>
+    </div>  
+  </div>
   );
 };
 

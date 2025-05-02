@@ -4,6 +4,7 @@ import { Camera } from "@mediapipe/camera_utils";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import "./SignPage.css";
+import "./Levels.css"; 
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5020";
 
@@ -156,13 +157,8 @@ const SignPage = () => {
       )}
 
       {/* "Go Back to Tutorial" Button */}
-      <div style={{ margin: "40px 0", textAlign: "center" }}>
-        <button
-          className="go-back-tutorial-button"
-          onClick={handleGoBackToTutorial}
-        >
-          Go Back to Tutorial
-        </button>
+      <div className = "grid-tutorial">
+        <button onClick={handleGoBackToTutorial}>Back </button>
       </div>
 
       <div className="video-container" style={{ marginTop: "40px" }}>
