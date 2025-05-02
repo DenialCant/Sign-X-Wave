@@ -1,35 +1,102 @@
-/* SignPage Specific Styles */
-.sign-page {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    flex-direction: column;
-    text-align: center;
-    background: radial-gradient(circle, #FFC4AB 8%, #C1DEF1 31%, #92CAF1 58%, #163480 100%);
+/* Container for Video and Buttons */
+.video-container {
+  display: flex;
+  justify-content: center; /* Center the webcam horizontally */
+  align-items: center; /* Center the webcam vertically */
+  position: relative; /* Enable absolute positioning for buttons */
+  width: 100%;
+  max-width: 800px; /* Adjust based on your layout */
+  margin: 0 auto;
+}
+
+/* Webcam Styling */
+.webcam {
+  width: 100%; /* Make the webcam responsive */
+  max-width: 640px; /* Set a maximum width for the webcam */
+  height: auto; /* Maintain aspect ratio */
+  border: 2px solid #ccc; /* White border around the webcam */
+  border-radius: 10px; /* Rounded corners for the webcam */
+  box-sizing: border-box; /* Ensure the border is included in the element's dimensions */
+}
+
+/* Buttons Styling */
+.go-back-button,
+.next-level-button {
+  position: absolute; /* Position buttons independently of the webcam */
+  top: 50%; /* Vertically center the buttons relative to the webcam */
+  transform: translateY(-50%); /* Adjust for vertical centering */
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 10; /* Ensure buttons appear above the video/canvas */
+  width: 150px; /* Set a fixed width for consistent button size */
+  text-align: center;
+}
+
+/* "Go Back to Levels" Button */
+.go-back-button {
+  left: -180px; /* Position to the left of the webcam */
+  background-color: #007bff;
+}
+
+/* "Next Level" Button */
+.next-level-button {
+  right: -180px; /* Position to the right of the webcam */
+  background-color: #28a745;
+}
+
+/* Responsive Adjustments for Smaller Screens */
+@media (max-width: 768px) {
+  .go-back-button,
+  .next-level-button {
+    font-size: 14px;
+    padding: 8px 16px;
+    width: 120px; /* Reduce button width for smaller screens */
   }
-  
-  /* Webcam Container with White Box */
-  .webcam-container {
-    background-color: white;
-    border-radius: 20px; /* Rounded corners for the white box */
-    padding: 20px; /* Space between the webcam and the box */
-    display: inline-block;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Subtle shadow for the white box */
-    max-width: 100%;
-    width: 640px; 
+
+  .go-back-button {
+    left: -140px; /* Adjust position for smaller screens */
   }
-  
-  /* Webcam Styling Inside the White Box */
-  .webcam {
-    border-radius: 15px; /* Round corners for the webcam */
-    max-width: 100%;
-    height: auto;
-    display: block;
+
+  .next-level-button {
+    right: -140px; /* Adjust position for smaller screens */
   }
-  
-  
+
+  /* "Go Back to Tutorial" Button */
+.go-back-tutorial-button {
+  position: absolute; /* Position the button at the top of the screen */
+  top: 100px; /* Add spacing from the top */
+  left: 50%; /* Center the button horizontally */
+  transform: translateX(-50%); /* Adjust for centering */
+  padding: 12px 24px; /* Add padding for a larger, more clickable button */
+  border: 2px solid #ccc;
+  font-size: 16px; /* Increase font size for better readability */
+  color: white; /* White text color */
+  background-color: #ff9800; /* Orange background color */
+  border: none; /* Remove default border */
+  border-radius: 25px; /* Fully rounded corners */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+  z-index: 10; /* Ensure the button appears above other elements */
+  text-align: center;
+}
+
+/* Hover Effect for "Go Back to Tutorial" Button */
+.go-back-tutorial-button:hover {
+  background-color: #e68900; /* Darker orange on hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Slightly larger shadow on hover */
+  transform: translateX(-50%) scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+/* Responsive Adjustments for Smaller Screens */
+@media (max-width: 768px) {
+  .go-back-tutorial-button {
+    font-size: 14px; /* Reduce font size for smaller screens */
+    padding: 10px 20px; /* Adjust padding for smaller screens */
+  }
+}
+}

@@ -67,4 +67,4 @@ def predict():
     return jsonify({"letter": label})
 
 if __name__ == "__main__":
-    app.run(port=5018, debug=True)
+    app.run(port=5020, debug=True)

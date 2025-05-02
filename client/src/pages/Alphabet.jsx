@@ -5,7 +5,7 @@ import axios from "axios";
 import { useParams } from 'react-router-dom';
 import './SignPage.css';
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5018";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5020";
 
 const Alphabet = () => {
   const webcamRef = useRef(null);

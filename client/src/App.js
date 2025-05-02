@@ -19,8 +19,8 @@ import PracticeRun from './pages/PracticeRun';
 
 
 import PrivateRoute from "./pages/PrivateRoute";
-import CollectPage from './pages/CollectPage';
-import Tutorial from './pages/Tutorial'; //>>>>>>> 4cb04012b29b1200a11ee0afd11f0213697d9f98
+//import CollectPage from './pages/CollectPage';
+//import Tutorial from './pages/Tutorial'; //>>>>>>> 4cb04012b29b1200a11ee0afd11f0213697d9f98
 
 
 // import components
