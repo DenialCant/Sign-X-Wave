@@ -3,14 +3,21 @@ import { Hands } from "@mediapipe/hands";
 import { Camera } from "@mediapipe/camera_utils";
 import axios from "axios";
 import { useParams, useNavigate } from 'react-router-dom';
+import './SignPage.css';
+
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5018";
 
 const SignPage = () => {
   const webcamRef = useRef(null);
   const navigate = useNavigate();
-  const { letter } = useParams();
-  const [expectedLetter, setExpectedLetter] = useState(letter || "A");
+  const { word } = useParams();
+  const expectedWord = word?.toLowerCase() || "hello";
   const [prediction, setPrediction] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+
+  useEffect(() => {
+    console.log("Prediction updated:", prediction);
+  }, [prediction]);
 
   useEffect(() => {
     const hands = new Hands({
@@ -31,17 +38,20 @@ const SignPage = () => {
         const landmarks = results.multiHandLandmarks[0]
           .flatMap((point) => [point.x, point.y]);
 
-        axios.post("http://localhost:5006/predict", { landmarks })
+          axios.post(`${API_URL}/predict`, {
+            landmarks,
+            mode: "word"
+          })          
           .then((response) => {
-            const predictedLetter = response.data.letter;
-            setPrediction(predictedLetter);
-            console.log("Prediction:", predictedLetter);
+            const predictedWord = response.data.letter;
+            setPrediction(predictedWord);
+            console.log("Prediction:", predictedWord);
 
-            if (predictedLetter === expectedLetter) {
+            if (predictedWord === expectedWord) {
               setSuccessMessage("✅ Good job!");
               setTimeout(() => {
                 navigate("/levels");
-              }, 2000); // Redirect back to Levels after 2 seconds
+              }, 2000);
             }
           })
           .catch((error) => {
@@ -60,13 +70,17 @@ const SignPage = () => {
       });
       camera.start();
     }
-  }, [expectedLetter]);
+  }, [expectedWord, navigate]);
 
   return (
     <div className="sign-page">
       <h1>Sign Detection Practice</h1>
-      <h2>Sign This Letter: {expectedLetter}</h2>
+      <h2>Sign This Word: {expectedWord}</h2>
       <h2>Your Prediction: {prediction}</h2>
+
+      {prediction === expectedWord && (
+        <p style={{ color: "green" }}>✅ Correct!</p>
+      )}
 
       {successMessage && (
         <h2 style={{ color: "green", marginTop: "20px" }}>{successMessage}</h2>
@@ -74,9 +88,7 @@ const SignPage = () => {
 
       <video
         ref={webcamRef}
-        width="640"
-        height="480"
-        style={{ width: "640px", height: "480px" }}
+        className="webcam"
         autoPlay
         playsInline
         muted
@@ -86,4 +98,5 @@ const SignPage = () => {
 };
 
 export default SignPage;
+
 

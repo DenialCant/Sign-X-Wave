@@ -7,7 +7,7 @@ const CollectPage = () => {
   const webcamRef = useRef(null);
   const [landmarks, setLandmarks] = useState([]);
   const [collectedData, setCollectedData] = useState([]);
-  const [label, setLabel] = useState("A");
+  const [label, setLabel] = useState("");
 
   useEffect(() => {
     const hands = new Hands({
@@ -44,12 +44,12 @@ const CollectPage = () => {
   }, []);
 
   const saveSample = () => {
-    if (landmarks.length === 42) {
-      const sample = [label, ...landmarks];
+    if (landmarks.length === 42 && label.trim() !== "") {
+      const sample = [label.toLowerCase(), ...landmarks];
       setCollectedData(prev => [...prev, sample]);
-      console.log("Sample saved:", sample);
+      console.log("✅ Sample saved:", sample);
     } else {
-      alert("No hand detected! Try again.");
+      alert("No hand detected or label is missing!");
     }
   };
 
@@ -64,22 +64,22 @@ const CollectPage = () => {
       .join("\n");
 
     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-    saveAs(blob, "hand_landmarks_data.csv");
+    saveAs(blob, "asl_word_landmarks.csv");
   };
 
   return (
     <div className="collect-page">
-      <h1>Data Collection</h1>
-      <h2>Current Label: {label}</h2>
+      <h1>Word Data Collection</h1>
+      <label>Enter Word Label (ex: hello, dog, name):</label>
+      <br />
       <input
         type="text"
         value={label}
-        maxLength="1"
-        onChange={(e) => setLabel(e.target.value.toUpperCase())}
-        placeholder="Enter Letter"
-        style={{ fontSize: "20px", textAlign: "center", marginBottom: "10px" }}
+        onChange={(e) => setLabel(e.target.value.toLowerCase())}
+        placeholder="Type word here..."
+        required
       />
-      <br />
+      <br /><br />
       <button onClick={saveSample} style={{ marginRight: "10px" }}>
         Save Sample
       </button>

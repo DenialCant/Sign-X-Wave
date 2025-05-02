@@ -9,12 +9,13 @@ import Login from './pages/Login';
 import Levels from './pages/Levels';
 import Signup from './pages/Signup';
 import SignPage from "./pages/SignPage";
-<<<<<<< HEAD
 import CollectPage from './pages/CollectPage';
-
-=======
 import Tutorial from './pages/Tutorial';
->>>>>>> 4cb04012b29b1200a11ee0afd11f0213697d9f98
+import PracticePage from './pages/PracticeRun';
+import Alphabet from './pages/Alphabet';
+import PracticeIntro from './pages/PracticeIntro';
+import PracticeRun from './pages/PracticeRun';
+
 
 
 // import components
@@ -29,12 +30,12 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/levels" element={<Levels />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/sign/:letter" element={<SignPage />} />
+        <Route path="/sign/:word" element={<SignPage />} />
         <Route path="/collect" element={<CollectPage />} />
-
-
+        <Route path="/alphabet/:letter" element={<Alphabet />} />
         <Route path="/tutorial/:letter" element={<Tutorial />} />
-
+        <Route path="/practice" element={<PracticeIntro />} />
+        <Route path="/practice/run" element={<PracticeRun />} />
 
         {/* Add more routes as needed */}
       </Routes>

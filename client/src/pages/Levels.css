@@ -1,85 +1,60 @@
+
 body {
   background: linear-gradient(135deg, #000 40%, #222 100%);
-  color: white; /* Ensures text is visible */
+  color: white;
   font-family: 'Quicksand', sans-serif;
 }
 
+.section-title {
+  margin-top: 80px;
+  text-align: center;
+  font-size: 36px;
+  font-weight: 600;
+}
+
 .grid-container {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  gap: 50px;
-  width: 50%;
-  
-  /* Proper centering */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-
-  /* Use margin auto for centering */
-  position: absolute;
-  top: 90%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  gap: 20px;
+  margin-top: 30px;
+  margin-bottom: 60px;
 }
 
-
-
-
 .grid-item {
+  width: 100px;
+  height: 75px;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px;
-  height: 75px;
-  background: transparent; /* Removes the blue background */
-  color: white; /* Adjusts text color */
-  font-size: 48px;
-  font-weight: 600;
+  border: 2px solid white;
   border-radius: 10px;
-  border: 2px solid white; /* Adds a white frame */
+  font-size: 24px;
+  font-weight: bold;
+  background: transparent;
+  color: white;
 }
+
 .grid-item button {
   width: 100%;
   height: 100%;
   background: none;
   border: none;
   color: inherit;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.detector-button {
-  width: 20%;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background: #333;
-  color: #fff;
+  font-size: inherit;
+  font-weight: inherit;
   cursor: pointer;
-  font-size: 16px;
-}
-
-.logout-button {
-  width: 20%;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background: #333;
-  color: #fff;
-  cursor: pointer;
-  font-size: 16px;
 }
 
 .logout-button {
   position: absolute;
-  top: 100px; /* Moves it to the top */
-  right: 20px; /* Keeps it on the right */
+  top: 30px;
+  right: 30px;
   padding: 10px 20px;
-  background: #333; 
+  background: #333;
   color: white;
   border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
 }
-
