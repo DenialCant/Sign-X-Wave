@@ -1,22 +1,35 @@
-import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import React from "react";
+import "./About.css";
+import RegistrationNavbar from "../components/RegistrationNavbar";
 
-function About() {
+const AboutUs = () => {
   return (
-    <Container fluid style={{ height: '100vh' }}>
-      <Row className="h-100 justify-content-center align-items-center">
-        <Col md={8} className="text-center">
+    <>
+      <RegistrationNavbar />
+      <div className="aboutus-header-line"></div> {/* White line separator */}
+      <div className="aboutus-background">
+        <div className="aboutus-content">
           <h1>About Us</h1>
+          <h2> </h2>
           <p>
-            Our sign language learning model uses interactive video lessons and real-time practice sessions to teach users 
-            how to understand and communicate effectively in sign language, offering immediate feedback to enhance learning and retention.
+            Welcome to Sign-X-Wave! Our mission is to make sign language learning
+            accessible and engaging for everyone. We believe in breaking
+            communication barriers and fostering inclusivity through technology.
           </p>
-        </Col>
-      </Row>
-    </Container>
+          <p>
+            Our platform uses cutting-edge AI to help users practice and master
+            sign language in an interactive and fun way. Whether you're a beginner
+            or looking to refine your skills, Sign-X-Wave is here to support your
+            journey.
+          </p>
+          <p>
+            Thank you for joining us on this journey to make communication more
+            inclusive and accessible for everyone!
+          </p>
+        </div>
+      </div>
+    </>
   );
-}
+};
 
-export default About;
+export default AboutUs;
