@@ -1,102 +1,91 @@
-/* Container for Video and Buttons */
-.video-container {
-  display: flex;
-  justify-content: center; /* Center the webcam horizontally */
-  align-items: center; /* Center the webcam vertically */
-  position: relative; /* Enable absolute positioning for buttons */
+/* Background for the Sign Page */
+.sign-page {
+  min-height: 100vh; /* Ensure it takes at least the full viewport height but grows with content */
   width: 100%;
-  max-width: 800px; /* Adjust based on your layout */
-  margin: 0 auto;
+  background-image: url('../wave.svg'),
+    radial-gradient(
+      circle at center,
+      rgba(187, 216, 239, 0.7) 0%,
+      rgba(147, 171, 198, 0.85) 11%,
+      rgba(106, 125, 157, 1) 25%,
+      rgba(24, 34, 75, 1) 45%,
+      rgba(0, 0, 0, 1) 70%
+    );
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover; /* Ensure the background scales to cover the entire container */
+  background-position: top left, center;
+  background-blend-mode: screen;
+  filter: brightness(1.1) contrast(1.0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  padding: 20px;
+}
+/* Video Container */
+.video-container {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Webcam Styling */
 .webcam {
-  width: 100%; /* Make the webcam responsive */
-  max-width: 640px; /* Set a maximum width for the webcam */
-  height: auto; /* Maintain aspect ratio */
-  border: 2px solid #ccc; /* White border around the webcam */
-  border-radius: 10px; /* Rounded corners for the webcam */
+  width: 640px; /* Ensure consistent width */
+  height: 480px; /* Ensure consistent height */
+  border: 5px solid white; /* Add a white border */
+  border-radius: 10px; /* Optional: Add rounded corners */
   box-sizing: border-box; /* Ensure the border is included in the element's dimensions */
+  object-fit: cover; /* Ensure the video or canvas content fits within the element */
 }
 
-/* Buttons Styling */
+/* Buttons */
 .go-back-button,
 .next-level-button {
-  position: absolute; /* Position buttons independently of the webcam */
-  top: 50%; /* Vertically center the buttons relative to the webcam */
-  transform: translateY(-50%); /* Adjust for vertical centering */
+  margin: 10px;
   padding: 10px 20px;
   font-size: 16px;
   color: white;
+  background-color: #007bff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  z-index: 10; /* Ensure buttons appear above the video/canvas */
-  width: 150px; /* Set a fixed width for consistent button size */
-  text-align: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* "Go Back to Levels" Button */
-.go-back-button {
-  left: -180px; /* Position to the left of the webcam */
-  background-color: #007bff;
+.go-back-button:hover,
+.next-level-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.1);
 }
 
-/* "Next Level" Button */
-.next-level-button {
-  right: -180px; /* Position to the right of the webcam */
+/* "Go Back to Tutorial" Button */
+.grid-tutorial button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
   background-color: #28a745;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Responsive Adjustments for Smaller Screens */
-@media (max-width: 768px) {
-  .go-back-button,
-  .next-level-button {
-    font-size: 14px;
-    padding: 8px 16px;
-    width: 120px; /* Reduce button width for smaller screens */
-  }
-
-  .go-back-button {
-    left: -140px; /* Adjust position for smaller screens */
-  }
-
-  .next-level-button {
-    right: -140px; /* Adjust position for smaller screens */
-  }
-
-  /* "Go Back to Tutorial" Button */
-.go-back-tutorial-button {
-  position: absolute; /* Position the button at the top of the screen */
-  top: 100px; /* Add spacing from the top */
-  left: 50%; /* Center the button horizontally */
-  transform: translateX(-50%); /* Adjust for centering */
-  padding: 12px 24px; /* Add padding for a larger, more clickable button */
-  border: 2px solid #ccc;
-  font-size: 16px; /* Increase font size for better readability */
-  color: white; /* White text color */
-  background-color: #ff9800; /* Orange background color */
-  border: none; /* Remove default border */
-  border-radius: 25px; /* Fully rounded corners */
-  cursor: pointer; /* Change cursor to pointer on hover */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
-  transition: all 0.3s ease; /* Smooth transition for hover effects */
-  z-index: 10; /* Ensure the button appears above other elements */
-  text-align: center;
+.grid-tutorial button:hover {
+  background-color: #1e7e34;
+  transform: scale(1.1);
 }
 
-/* Hover Effect for "Go Back to Tutorial" Button */
-.go-back-tutorial-button:hover {
-  background-color: #e68900; /* Darker orange on hover */
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Slightly larger shadow on hover */
-  transform: translateX(-50%) scale(1.05); /* Slightly enlarge the button on hover */
-}
-
-/* Responsive Adjustments for Smaller Screens */
-@media (max-width: 768px) {
-  .go-back-tutorial-button {
-    font-size: 14px; /* Reduce font size for smaller screens */
-    padding: 10px 20px; /* Adjust padding for smaller screens */
-  }
-}
+/* Grey Square Container */
+.text-container {
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent grey background */
+  padding: 20px 40px; /* Add padding for spacing */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Optional: Add a shadow for depth */
+  text-align: center; /* Center-align the text */
+  margin-bottom: 20px; /* Add spacing below the container */
+  color: white; /* Ensure text is white for readability */
 }

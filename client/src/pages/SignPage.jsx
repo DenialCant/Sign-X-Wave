@@ -4,7 +4,6 @@ import { Camera } from "@mediapipe/camera_utils";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import "./SignPage.css";
-import "./Levels.css"; 
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5020";
 
@@ -144,57 +143,59 @@ const SignPage = () => {
 
   return (
     <div className="sign-page">
-      <h1>Sign Detection Practice</h1>
-      <h2>Sign This Word: {expectedWord}</h2>
-      <h2>Your Prediction: {prediction}</h2>
+  <div className="text-container">
+    <h1>Sign Detection Practice</h1>
+    <h2>Sign This Word: {expectedWord}</h2>
+    <h2>Your Prediction: {prediction}</h2>
 
-      {prediction.toLowerCase() === expectedWord.toLowerCase() && (
-        <p style={{ color: "green" }}>✅ Correct!</p>
-      )}
+    {prediction.toLowerCase() === expectedWord.toLowerCase() && (
+      <p style={{ color: "green" }}>✅ Correct!</p>
+    )}
 
-      {successMessage && (
-        <h2 style={{ color: "green", marginTop: "20px" }}>{successMessage}</h2>
-      )}
+    {successMessage && (
+      <h2 style={{ color: "green", marginTop: "20px" }}>{successMessage}</h2>
+    )}
+  </div>
 
-      {/* "Go Back to Tutorial" Button */}
-      <div className = "grid-tutorial">
-        <button onClick={handleGoBackToTutorial}>Back </button>
-      </div>
+  {/* "Go Back to Tutorial" Button */}
+  <div className="grid-tutorial">
+    <button onClick={handleGoBackToTutorial}>Back</button>
+  </div>
 
-      <div className="video-container" style={{ marginTop: "40px" }}>
-        {/* Video feed or captured frame */}
-        {!isPaused ? (
-          <video
-            ref={webcamRef}
-            className="webcam"
-            autoPlay
-            playsInline
-            muted
-          />
-        ) : (
-          <canvas
-            ref={canvasRef}
-            className="webcam"
-            width="640"
-            height="480"
-          />
-        )}
+  <div className="video-container">
+    {/* Video feed or captured frame */}
+    {!isPaused ? (
+      <video
+        ref={webcamRef}
+        className="webcam"
+        autoPlay
+        playsInline
+        muted
+      />
+    ) : (
+      <canvas
+        ref={canvasRef}
+        className="webcam"
+        width="640"
+        height="480"
+      />
+    )}
 
-        {/* "Go Back to Levels" Button */}
-        {showButtons && (
-          <button className="go-back-button" onClick={handleGoBack}>
-            Go Back to Levels
-          </button>
-        )}
+    {/* "Go Back to Levels" Button */}
+    {showButtons && (
+      <button className="go-back-button" onClick={handleGoBack}>
+        Go Back to Levels
+      </button>
+    )}
 
-        {/* "Next Level" Button */}
-        {showButtons && (
-          <button className="next-level-button" onClick={handleNextLevel}>
-            Next Level
-          </button>
-        )}
-      </div>
-    </div>
+    {/* "Next Level" Button */}
+    {showButtons && (
+      <button className="next-level-button" onClick={handleNextLevel}>
+        Next Level
+      </button>
+    )}
+  </div>
+</div>
   );
 };
 
