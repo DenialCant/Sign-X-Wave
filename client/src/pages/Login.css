@@ -54,8 +54,7 @@
 }
 
 
-/* Container for the form */
-.signup-form-container{
+.signup-form-container {
   background-color: rgba(0, 0, 0, 0.55); 
   opacity: 100%;
   padding: 40px;
@@ -70,18 +69,17 @@
   align-items: center;
   padding: 10px 40px 40px;
 
-  margin-top: 110px;
+  margin-top: 150px; /* Increased margin to push the gray box down */
   margin-bottom: 40px;
   position: relative;
   z-index: 1;
-
 }
-.signup-form-container h1{
+.signup-form-container h1 {
   font-family: 'Inter', sans-serif;
-  font-size: 45px;  /* Bigger and bolder for title */
+  font-size: 45px; /* Bigger and bolder for title */
   font-weight: 370;
   margin-bottom: 4px;
-  margin-top: 30px;
+  margin-top: 0px; /* Reduced margin to bring the text up */
   text-align: center;
 }
 
@@ -120,22 +118,28 @@
 .signup-form button {
   width: 240px;
   height: 50px;
-  border: none;
-  border-radius: 9999px; 
-  background-color: #0F1516;
-  color: white;
+  border: 2px solid white; /* White border */
+  border-radius: 9999px; /* Rounded corners */
+  background-color: transparent; /* Transparent background */
+  color: white; /* White text */
   font-size: 20px;
   font-weight: 500;
   cursor: pointer;
   margin: 30px auto 0 auto;
   display: block;
-
-  box-shadow: 0 0 30px rgba(40, 97, 103, 0.2); /* #286167 at 20% */
-  transition: all 0.3s ease;
+  box-shadow: 0 0 30px rgba(40, 97, 103, 0.2); /* Subtle shadow */
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
 }
 
 .signup-form button:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 40px rgba(40, 97, 103, 0.3);
+  background-color: white; /* White background on hover */
+  color: black; /* Black text on hover */
+  transform: scale(1.05); /* Slightly enlarge the button on hover */
 }
 
+.login-redirect {
+  margin-top: 40px; /* Add space above the text */
+  text-align: center; /* Ensure the text is centered */
+  font-size: 14px; /* Optional: Adjust font size */
+  color: white; /* Ensure the text color matches the design */
+}

@@ -60,14 +60,16 @@
     padding: 15px 25px; /* Increase padding for larger buttons */
     font-size: 18px; /* Increase font size for buttons */
     color: white;
-    background-color: #007bff;
-    border: none;
+    background-color: transparent;
+    border: 2px solid white;
     border-radius: 5px;
+    font-size: 20px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
   
 .grid-tutorial button:hover {
-    background-color: #0056b3;
+    background-color: white;
+    color: black;
     transform: scale(1.1);
 }

@@ -17,9 +17,24 @@
     color: white;
     font-size: 18px;
     font-weight: 500;
-    transition: color 0.3s ease;
+    /*transition: color 0.3s ease;*/
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
   }
   
   .nav-link:hover {
     color: #ddd;
+    transform: scale(1.1);
   }
+
+  .registration-navbar .registration-nav-link {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Use the default text color */
+    font-size: 18px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+  }
+
+  .registration-navbar .registration-nav-link:hover {
+    color: #ddd; /* Change color on hover */
+    transform: scale(1.1); /* Scale effect on hover */
+  }
+  

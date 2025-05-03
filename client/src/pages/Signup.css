@@ -1,105 +1,160 @@
-/* Container for Video and Buttons */
-.video-container {
-  display: flex;
-  justify-content: center; /* Center the webcam horizontally */
-  align-items: center; /* Center the webcam vertically */
-  position: relative; /* Enable absolute positioning for buttons */
+/* Scope all styles under .signup-page */
+.signup-page .signup-background {
+  height: 100vh;
   width: 100%;
-  max-width: 800px; /* Adjust based on your layout */
-  margin: 0 auto;
-  gap: 20px; /* Add spacing between the webcam and buttons */
+  background-image: url('../wave.svg'),
+    radial-gradient(
+      circle at center,
+      rgba(187, 216, 239, 0.7) 0%,
+      rgba(147, 171, 198, 0.85) 11%,
+      rgba(106, 125, 157, 1) 25%,
+      rgba(24, 34, 75, 1) 45%,
+      rgba(0, 0, 0, 1) 70%
+    );
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Changed from center to flex-start */
+  position: static;
+  padding-top: 80px; /* Add padding to account for navbar height */
 }
 
-/* Webcam Styling */
-.webcam {
-  width: 100%; /* Make the webcam responsive */
-  max-width: 640px; /* Set a maximum width for the webcam */
-  height: auto; /* Maintain aspect ratio */
-  border: 2px solid #ccc; /* White border around the webcam */
-  border-radius: 10px; /* Rounded corners for the webcam */
-  box-sizing: border-box; /* Ensure the border is included in the element's dimensions */
-}
-
-/* Buttons Styling */
-.go-back-button,
-.next-level-button {
-  position: absolute; /* Position buttons independently of the webcam */
-  top: 50%; /* Vertically center the buttons relative to the webcam */
-  transform: translateY(-50%); /* Adjust for vertical centering */
-  padding: 10px 20px;
-  font-size: 16px;
+.signup-page .signup-form-container {
+  background-color: rgba(0, 0, 0, 0.55);
+  padding: 40px;
+  border-radius: 20px;
+  width: 600px;
   color: white;
-  border: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px !important; /* Reduced from 150px to move it up */
+}
+
+.signup-page .signup-form-container h1 {
+  font-family: 'Inter', sans-serif;
+  font-size: 45px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.signup-page .signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.signup-page .signup-form label {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+}
+
+.signup-page .signup-form input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid white;
+  border-radius: 5px;
+  background-color: transparent;
+  color: white;
+  outline: none;
+}
+
+.signup-page .signup-form input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.signup-page .signup-form input:focus {
+  border-color: #007bff;
+}
+
+.signup-page .signup-form button {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background-color: transparent;
+  border: 2px solid white;
   border-radius: 5px;
   cursor: pointer;
-  z-index: 10; /* Ensure buttons appear above the video/canvas */
-  width: 150px; /* Set a fixed width for consistent button size */
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.signup-page .signup-form button:hover {
+  background-color: white;
+  color: black;
+  transform: scale(1.05);
+}
+
+.signup-page .login-redirect {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: white;
+}
+
+.signup-page .login-redirect a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.signup-page .login-redirect a:hover {
+  text-decoration: underline;
+}
+
+.signup-page .error-msg {
+  color: #ff6b6b;
+  margin-top: 10px;
   text-align: center;
 }
 
-/* "Go Back to Levels" Button */
-.go-back-button {
-  left: -180px; /* Position to the left of the webcam */
-  background-color: #007bff;
-}
-
-/* "Next Level" Button */
-.next-level-button {
-  right: -180px; /* Position to the right of the webcam */
-  background-color: #28a745;
-}
-
-/* "Go Back to Tutorial" Button */
-.go-back-tutorial-button {
-  position: absolute; /* Position the button at the top of the screen */
-  top: 160px; /* Increase spacing from the top to avoid overlapping with text */
-  left: 50%; /* Center the button horizontally */
-  transform: translateX(-50%); /* Adjust for centering */
-  padding: 12px 24px; /* Add padding for a larger, more clickable button */
-  font-size: 16px; /* Increase font size for better readability */
-  color: white; /* White text color */
-  background-color: black; /* Black background color */
-  border: none; /* Remove default border */
-  border-radius: 25px; /* Fully rounded corners */
-  cursor: pointer; /* Change cursor to pointer on hover */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
-  transition: all 0.3s ease; /* Smooth transition for hover effects */
-  z-index: 10; /* Ensure the button appears above other elements */
-  text-align: center;
-}
-
-/* Hover Effect for "Go Back to Tutorial" Button */
-.go-back-tutorial-button:hover {
-  background-color: white; /* White background on hover */
-  color: black; /* Black text on hover */
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Slightly larger shadow on hover */
-  transform: translateX(-50%) scale(1.05); /* Slightly enlarge the button on hover */
-}
-
-/* Responsive Adjustments for Smaller Screens */
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-  .go-back-tutorial-button {
-    font-size: 14px; /* Reduce font size for smaller screens */
-    padding: 10px 20px; /* Adjust padding for smaller screens */
-    top: 140px; /* Adjust spacing from the top for smaller screens */
+  .signup-page .signup-form-container {
+    width: 90%;
+    padding: 30px;
   }
 
-  .webcam {
-    max-width: 100%; /* Allow the webcam to take up full width on smaller screens */
+  .signup-page .signup-form-container h1 {
+    font-size: 36px;
   }
 
-  .go-back-button,
-  .next-level-button {
-    font-size: 14px;
-    padding: 8px 16px;
-    width: 120px; /* Reduce button width for smaller screens */
+  .signup-page .signup-form button {
+    font-size: 16px;
   }
+}
 
-  .go-back-button {
-    left: -140px; /* Adjust position for smaller screens */
-  }
+.signup-header {
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  position: absolute;
+  top: 60px; /* Adjust the position of the white line */
+  left: 0;
+  margin-bottom: 40px; /* Add space below the header */
+}
 
-  .next-level-button {
-    right: -140px; /* Adjust position for smaller screens */
-  }
+.signup-form-container {
+  background-color: rgba(0, 0, 0, 0.55);
+  padding: 60px 40px; /* Increase padding to make the box taller */
+  border-radius: 20px;
+  width: 600px;
+  color: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px !important; /* Adjust the margin to move it down */
+  min-height: 400px; /* Ensure the box has a minimum height */
 }

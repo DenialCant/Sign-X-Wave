@@ -49,8 +49,9 @@
   padding: 10px 20px;
   font-size: 16px;
   color: white;
-  background-color: #007bff;
-  border: none;
+  background-color: transparent;
+  border: 2px solid white;
+  font-size: 20px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
@@ -58,7 +59,8 @@
 
 .go-back-button:hover,
 .next-level-button:hover {
-  background-color: #0056b3;
+  background-color: white;
+  color: black;
   transform: scale(1.1);
 }
 
