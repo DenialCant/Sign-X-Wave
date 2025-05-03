@@ -13,9 +13,25 @@ const Tutorial = () => {
 
   // Go to next letter or word
   const nextLetter = () => {
-    if (letter === "Z") return;
-    const next = String.fromCharCode(letter.charCodeAt(0) + 1);
-    navigate(`/tutorial/${next}`);
+    const levelSequence = [
+      ...Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)), // Letters A-Z
+      "hello",
+      "my",
+      "name",
+      "is",
+    ];
+  
+    // Ensure the comparison works for both letters and words
+    const currentIndex = levelSequence.indexOf(
+      levelSequence.includes(letter.toUpperCase()) ? letter.toUpperCase() : letter.toLowerCase()
+    );
+  
+    if (currentIndex !== -1 && currentIndex < levelSequence.length - 1) {
+      const nextLevel = levelSequence[currentIndex + 1];
+      navigate(`/tutorial/${nextLevel}`);
+    } else {
+      console.log("No more levels available.");
+    }
   };
 
   const handleStartSigning = () => {

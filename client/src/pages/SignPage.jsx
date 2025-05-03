@@ -129,8 +129,22 @@ const SignPage = () => {
   }, [expectedWord, navigate, word]);
 
   const handleNextLevel = () => {
-    const nextLetter = String.fromCharCode(expectedWord.charCodeAt(0) + 1); // Get the next letter
-    navigate(`/tutorial/${nextLetter}`);
+    const levelSequence = [
+      ...Array.from({ length: 26 }, (_, i) => String.fromCharCode(97 + i)), // Letters a-z
+      "hello",
+      "my",
+      "name",
+      "is",
+    ];
+  
+    const currentIndex = levelSequence.indexOf(expectedWord.toLowerCase());
+  
+    if (currentIndex !== -1 && currentIndex < levelSequence.length - 1) {
+      const nextLevel = levelSequence[currentIndex + 1];
+      navigate(`/tutorial/${nextLevel}`);
+    } else {
+      console.log("No more levels available.");
+    }
   };
 
   const handleGoBack = () => {
