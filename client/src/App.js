@@ -16,6 +16,7 @@ import PracticePage from './pages/PracticeRun';
 import Alphabet from './pages/Alphabet';
 import PracticeIntro from './pages/PracticeIntro';
 import PracticeRun from './pages/PracticeRun';
+import ProgressPage from './pages/ProgressPage';
 
 
 import PrivateRoute from "./pages/PrivateRoute";
@@ -54,6 +55,9 @@ function App() {
         {/* Add more routes as needed */}
 
         <Route path="/tutorial/:letter" element={<Tutorial />} />
+        <Route path="/progresspage" element={<ProgressPage />} />
+
+        {/* Catch-all route for 404 */}
       </Routes>
     </div>
   );

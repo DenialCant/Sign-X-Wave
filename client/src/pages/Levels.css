@@ -7,7 +7,7 @@ body {
 
 /* Section Titles */
 .section-title {
-  margin-top: 80px;
+  margin-top: 140px;
   text-align: center;
   font-size: 36px;
   font-weight: 600;
@@ -124,4 +124,26 @@ body {
   height: 3px; /* Thickness of the line */
   background-color: #FFF9F9; /* White color */
   z-index: 2; /* Ensure it appears above the background */
+}
+
+.progress-button-container {
+  position: absolute;
+  top: 80px;          /* adjust how far down from the top it sits /
+  right: 20px;         / push to the far right */
+  z-index: 10;
+}
+
+
+.progress-button {
+  background-color: #333;
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.progress-button:hover {
+  background-color: #45a049;
 }

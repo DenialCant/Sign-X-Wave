@@ -12,6 +12,18 @@ const Alphabet = () => {
   const { letter } = useParams();
   const [prediction, setPrediction] = useState("");
   const [message, setMessage] = useState("");
+  const updateProgress = (type, value) => {
+    const progress = JSON.parse(localStorage.getItem("progress")) || {
+      letters: [],
+      words: []
+    };
+  
+    if (!progress[type].includes(value)) {
+      progress[type].push(value);
+      localStorage.setItem("progress", JSON.stringify(progress));
+    }
+  };
+  
 
   useEffect(() => {
     const hands = new Hands({
@@ -40,6 +52,7 @@ const Alphabet = () => {
           setPrediction(predicted);
 
           if (predicted === letter.toUpperCase()) {
+            updateProgress("letters", letter.toUpperCase());
             setMessage("✅ Correct!");
           } else {
             setMessage("❌ Try again");

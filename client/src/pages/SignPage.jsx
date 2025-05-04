@@ -17,6 +17,18 @@ const SignPage = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const [isPaused, setIsPaused] = useState(false); // State to track if the video is paused
   const [showButtons, setShowButtons] = useState(false); // State to show/hide buttons
+  const updateProgress = (type, value) => {
+    const progress = JSON.parse(localStorage.getItem("progress")) || {
+      letters: [],
+      words: []
+    };
+  
+    if (!progress[type].includes(value)) {
+      progress[type].push(value);
+      localStorage.setItem("progress", JSON.stringify(progress));
+    }
+  };
+  
 
   let lastPredictionTime = useRef(0); // Track the time of the last prediction
 
@@ -65,6 +77,7 @@ const SignPage = () => {
               setPrediction(predictedWord);
 
               if (predictedWord.toLowerCase() === expectedWord.toLowerCase()) {
+                updateProgress("words", predictedWord); //new line
                 setSuccessMessage("✅ Good job!");
                 pauseVideo(); // Pause the video feed
                 setShowButtons(true); // Show the buttons

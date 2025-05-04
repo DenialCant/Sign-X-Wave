@@ -3,10 +3,12 @@ import { useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import RegistrationNavbar from "../components/RegistrationNavbar";
+import { useEffect, useState } from "react";
 import "./Levels.css";
 
 function Levels() {
   const navigate = useNavigate();
+
 
   // Navigate to the tutorial page for a letter
   const handleLetterClick = (letter) => {
@@ -45,8 +47,17 @@ function Levels() {
           <Button className="logout-button" onClick={handleLogout}>
             Logout
           </Button>
+          
+          <div className="progress-button-container">
+            <Button className="progress-button" onClick={() => navigate("/progresspage")}>
+              View Progress
+            </Button>
+          </div>
 
           {/* Alphabet Levels */}
+          {/* View Progress Button */}
+          <div className="progress-button-container">
+          </div>
           <h1 className="section-title">Alphabet Levels</h1>
           <div className="grid-container">
             {letters.map((letter) => (

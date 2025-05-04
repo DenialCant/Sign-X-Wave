@@ -18,7 +18,6 @@ const Tutorial = () => {
       "hello",
       "my",
       "name",
-      "is",
     ];
   
     // Ensure the comparison works for both letters and words
