@@ -3,7 +3,7 @@
 How to run with model and login:
 
 before running any terminals:
-open xampp,
+open xampp, (https://www.apachefriends.org/download.html)
 start apache and mySQL,
 open admin of mySQL,
 go to import,
